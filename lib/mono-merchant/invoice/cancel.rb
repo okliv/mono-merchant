@@ -2,19 +2,22 @@ module MonoMerchant
   module Invoice
 
     # Cancel successful payment
-    class Cancel < Finalize
+    class Cancel < ApiRequest
 
-      attr_reader :ext_ref
+      attr_reader :ext_ref, :invoice_id, :amount, :items
 
       def initialize(invoice_id, amount, ext_ref: nil, items: [])
-        super(invoice_id, amount, items)
-        @ext_ref = ext_ref
+        @invoice_id, @amount, @items, @ext_ref = invoice_id, amount, items, ext_ref
       end
 
       protected
 
       def body
-        super.merge(extRef: ext_ref)
+        { invoiceId: invoice_id,
+          amount: amount,
+          extRef: ext_ref,
+          items: items.presence
+        }
       end
     end
   end
