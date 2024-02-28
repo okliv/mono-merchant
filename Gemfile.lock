@@ -57,7 +57,7 @@ PLATFORMS
 
 DEPENDENCIES
   mono-merchant!
-  rake (~> 13.0)
+  rake
 
 BUNDLED WITH
    2.1.4

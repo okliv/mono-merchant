@@ -12,7 +12,7 @@ module MonoMerchant
 
     # Validate webhook data signature with public key
     #
-    # @return [Boolean] true if valid, false if not valid
+    # @return [Boolean] valid?
     def valid?
       return false if @webhook_data.nil?
       return false if signature.nil?
@@ -23,7 +23,7 @@ module MonoMerchant
 
       return true if openssl_ec.verify(digest, signature, @webhook_data)
 
-      warn "Webhook aren't authorized. Might be signature is invalid or webhook data is modified."
+      warn "Webhook isn't authorized. Might be wrong signature or inconsistent webhook data."
 
       false
     end

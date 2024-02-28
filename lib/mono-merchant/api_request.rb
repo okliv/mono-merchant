@@ -43,7 +43,7 @@ module MonoMerchant
       {}
     end
 
-    # @return [Hash] response body of false in case of errors
+    # @return [Hash] response body or false in case of errors
     def response
       @response ||= begin
                       response = case type
