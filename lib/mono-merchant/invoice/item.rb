@@ -14,7 +14,6 @@ module MonoMerchant
         @qty = i[:qty]
         @sum = i[:sum]
         @code = i[:code]
-
         # optional
         @icon = i[:icon]
         @unit = i[:unit]
