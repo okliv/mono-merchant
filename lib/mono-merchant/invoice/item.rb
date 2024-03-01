@@ -20,6 +20,17 @@ module MonoMerchant
         @header = i[:header]
         @footer = i[:footer]
       end
+
+      def to_hash
+        { name: name,
+          qty: qty,
+          sum: sum,
+          code: code,
+          icon: icon,
+          unit: unit,
+          header: header,
+          footer: footer }.compact
+      end
     end
   end
 end
