@@ -4,7 +4,7 @@ module MonoMerchant
   module Invoice
     # Create invoice
     class Create < ApiRequest
-      attr_reader :amount, :currency, :payment_type, :customer_emails, :items, :destination, :commennt, :reference, :redirect_url, :webhook_url
+      attr_reader :amount, :currency, :payment_type, :customer_emails, :items, :destination, :comment, :reference, :redirect_url, :webhook_url
 
       # @param [BigDecimal,Integer] amount (cents) to request payment
       # @param [String] destination - additional info about payment
