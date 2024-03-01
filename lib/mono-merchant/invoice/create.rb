@@ -4,22 +4,24 @@ module MonoMerchant
   module Invoice
     # Create invoice
     class Create < ApiRequest
-      attr_reader :amount, :currency, :payment_type, :customer_emails, :items, :destination, :reference, :redirect_url, :webhook_url
+      attr_reader :amount, :currency, :payment_type, :customer_emails, :items, :destination, :commennt, :reference, :redirect_url, :webhook_url
 
       # @param [BigDecimal,Integer] amount (cents) to request payment
       # @param [String] destination - additional info about payment
       # @param [String] reference - bill number or other reference
+      # @param [String] comment - internal service info
       # @param [String] currency - currency iso code
       # @param [Boolean] hold - if payment type is 'hold' (default: 'debit')
       # @param [String] email - client email
       # @param [Array] items - cart content
       # @param [String] redirect_url - url where user will be redirected after payment
       # @param [String] webhook_url - url where Monobank will send webhook after payment
-      def initialize(amount, destination: nil, reference: nil, currency: DEFAULT_CURRENCY, hold: false, email: nil, items: [], redirect_url: nil, webhook_url: nil)
+      def initialize(amount, destination: nil, reference: nil, currency: DEFAULT_CURRENCY, hold: false, email: nil, items: [], redirect_url: nil, webhook_url: nil, comment: nil)
         super()
         @amount = convert_to_cents(amount)
         @destination = destination
         @reference = reference
+        @comment = comment
         @currency = Money::Currency.new(currency)
         @payment_type = hold ? 'hold' : 'debit'
         @customer_emails = [email] if email
@@ -39,9 +41,10 @@ module MonoMerchant
           paymentType: payment_type,
           redirectUrl: redirect_url,
           webHookUrl: webhook_url,
-          basketOrder: items,
           merchantPaymInfo: {
+            basketOrder: items,
             reference: reference,
+            comment: comment,
             destination: destination,
             customerEmails: customer_emails
           }.compact
