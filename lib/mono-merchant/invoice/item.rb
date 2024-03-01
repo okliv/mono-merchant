@@ -29,7 +29,7 @@ module MonoMerchant
           icon: icon,
           unit: unit,
           header: header,
-          footer: footer }.compact
+          footer: footer }
       end
     end
   end

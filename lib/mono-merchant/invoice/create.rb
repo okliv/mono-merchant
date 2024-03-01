@@ -25,7 +25,7 @@ module MonoMerchant
         @currency = Money::Currency.new(currency)
         @payment_type = hold ? 'hold' : 'debit'
         @customer_emails = [email] if email
-        @items = items.map { |i| Item.new(i).to_hash }
+        @items = items.map { |i| Item.new(i).to_hash.compact.presence }
         @redirect_url = redirect_url
         @webhook_url = webhook_url
       end
@@ -42,7 +42,7 @@ module MonoMerchant
           redirectUrl: redirect_url,
           webHookUrl: webhook_url,
           merchantPaymInfo: {
-            basketOrder: items,
+            basketOrder: items.presence,
             reference: reference,
             comment: comment,
             destination: destination,
