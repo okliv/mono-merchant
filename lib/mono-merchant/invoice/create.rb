@@ -17,7 +17,6 @@ module MonoMerchant
       # @param [String] redirect_url - url where user will be redirected after payment
       # @param [String] webhook_url - url where Monobank will send webhook after payment
       def initialize(amount, destination: nil, reference: nil, currency: DEFAULT_CURRENCY, hold: false, email: nil, items: [], redirect_url: nil, webhook_url: nil, comment: nil)
-        super()
         @amount = convert_to_cents(amount)
         @destination = destination
         @reference = reference
@@ -28,6 +27,7 @@ module MonoMerchant
         @items = items.map { |i| Item.new(i).to_hash.presence }
         @redirect_url = redirect_url
         @webhook_url = webhook_url
+        super()
       end
 
       protected

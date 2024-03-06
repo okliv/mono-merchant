@@ -8,8 +8,8 @@ module MonoMerchant
       attr_reader :invoice_id
 
       def initialize(invoice_id)
-        super(type: :get)
         @invoice_id = invoice_id
+        super(type: :get)
       end
 
       protected

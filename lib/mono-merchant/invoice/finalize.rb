@@ -8,10 +8,10 @@ module MonoMerchant
       attr_reader :invoice_id, :amount, :items
 
       def initialize(invoice_id, amount, items: [])
-        super()
         @invoice_id = invoice_id
         @amount = amount
         @items = items.map { |i| Item.new(i).to_hash }
+        super()
       end
 
       protected
