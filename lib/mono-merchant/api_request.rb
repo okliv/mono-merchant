@@ -11,6 +11,7 @@ module MonoMerchant
     def initialize(type: :post)
       @type = type
       @errors = []
+      response
     end
 
     def url
@@ -43,6 +44,16 @@ module MonoMerchant
       {}
     end
 
+    def convert_to_cents(amount)
+      if amount.is_a?(BigDecimal)
+        Money.from_amount(amount, currency).cents
+      else
+        amount
+      end
+    end
+
+    private
+
     # @return [Hash] response body or false in case of errors
     def response
       @response ||= begin
@@ -63,17 +74,6 @@ module MonoMerchant
                       false
                     end
     end
-
-    def convert_to_cents(amount)
-      if amount.is_a?(BigDecimal)
-        Money.from_amount(amount, currency).cents
-      else
-        amount
-      end
-    end
-
-    private
-
     def method_missing(name, *args)
       cam_name = name.to_s.camelize(:lower)
       return super unless data.include?(cam_name)
