@@ -8,11 +8,11 @@ require_relative "lib/mono-merchant/version"
 Gem::Specification.new do |spec|
   spec.name = "mono-merchant"
   spec.version = MonoMerchant::VERSION
-  spec.authors = ["okliv"]
-  spec.email = [""]
+  spec.authors = ['okliv']
+  spec.email = ["ok@entitative.com"]
 
   spec.summary = "The \"mono-merchant\" gem is a powerful Ruby library designed for seamless integration with Monobank's acquiring system. It provides a convenient way to handle Monobank payments."
-  spec.description = "The \"mono-merchant\" gem simplifies Monobank payment integration in Ruby applications. It provides an simplified interface and essential functionalities for generating invoice requests, verifying transactions, handling webhooks, and ensuring data integrity. With this gem, you can quickly and securely implement Monobank payments."
+  spec.description = "The \"mono-merchant\" gem simplifies Monobank payment integration in Ruby applications. It provides an simplified interface and essential functionalities for generating invoice requests, verifying transactions, handling webhooks to ensure data integrity. With this gem, you can quickly and securely implement Monobank payments."
   spec.homepage = "https://github.com/okliv/mono-merchant"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.7.0"
@@ -38,11 +38,4 @@ Gem::Specification.new do |spec|
   spec.add_dependency "json", "~> 2.5"
   spec.add_dependency "money", "~> 6.16"
   spec.add_dependency "activesupport", "~> 7"
-
-  # spec.add_development_dependency "rspec"
-  # spec.add_development_dependency "pry"
-  # spec.add_development_dependency "simplecov"
-
-  # For more information and examples about making a new gem, check out our
-  # guide at: https://bundler.io/guides/creating_gem.html
 end
