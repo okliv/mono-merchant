@@ -8,6 +8,7 @@ module MonoMerchant
 
       def initialize(invoice_id)
         @invoice_id = invoice_id
+        super()
       end
 
       protected

@@ -16,17 +16,17 @@ module MonoMerchant
       # @param [Array] items - cart content
       # @param [String] redirect_url - url where user will be redirected after payment
       # @param [String] webhook_url - url where Monobank will send webhook after payment
-      def initialize(amount, destination: nil, reference: nil, currency: DEFAULT_CURRENCY, hold: false, email: nil, items: [], redirect_url: nil, webhook_url: nil, comment: nil)
+      def initialize(amount, currency: DEFAULT_CURRENCY, items: [], hold: false, reference: nil, redirect_url: nil, webhook_url: nil, email: nil, destination: nil, comment: nil)
         @amount = convert_to_cents(amount)
         @destination = destination
         @reference = reference
         @comment = comment
-        @currency = Money::Currency.new(currency)
-        @payment_type = hold ? 'hold' : 'debit'
         @customer_emails = [email] if email
-        @items = items.map { |i| Item.new(i).to_hash.presence }
         @redirect_url = redirect_url
         @webhook_url = webhook_url
+        @currency = Money::Currency.new(currency)
+        @items = items.map { |i| Item.new(i).to_hash.presence }
+        @payment_type = hold ? 'hold' : 'debit'
         super()
       end
 

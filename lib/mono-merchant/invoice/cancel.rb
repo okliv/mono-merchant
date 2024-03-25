@@ -8,6 +8,7 @@ module MonoMerchant
 
       def initialize(invoice_id, amount, ext_ref: nil, items: [])
         @invoice_id, @amount, @items, @ext_ref = invoice_id, amount, items, ext_ref
+        super()
       end
 
       protected

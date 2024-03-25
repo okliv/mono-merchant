@@ -31,6 +31,15 @@ Development: [https://api.monobank.ua/](https://api.monobank.ua/)
 
 Production: [https://fop.monobank.ua/](https://fop.monobank.ua/)
 
+### Verify webhook transaction
+
+```ruby
+
+request_to_validate = MonoMerchant::WebhookValidator.new(request)
+request_to_validate.valid?
+
+```
+
 ### Create invoice request
 
 ```ruby
@@ -40,14 +49,41 @@ MonoMerchant::Invoice::Create.new(amount) # see other params in code comments
 
 ```
 
-### Verify webhook transaction
+### Other methods
 
 ```ruby
 
-request_to_validate = MonoMerchant::WebhookValidator.new(request)
-request_to_validate.valid?
+# Invoice
+MonoMerchant::Invoice::Status.new(invoice_id) # check status
+MonoMerchant::Invoice::Cancel.new(invoice_id) # cancel successful payment
+MonoMerchant::Invoice::Remove.new(invoice_id) # invalidate created invoice 
+MonoMerchant::Invoice::Finalize.new(invoice_id, amount, items: []) # finalize holding amount with possibility to modify it 
+MonoMerchant::Invoice::FiscalChecks.new(invoice_id) # get fiscal check(s) 
+
+# QR
+MonoMerchant::Qr::List.new # list QR cash-boxes
+MonoMerchant::Qr::Details.new(qr_id) # get QR details
+MonoMerchant::Qr::ResetAmount.new(qr_id) # reset/remove payment
+
+# Submerchant
+MonoMerchant::Submerchant::List.new # get list of submerchants
+
+# Wallet
+MonoMerchant::Wallet::List.new(wallet_id)
+MonoMerchant::Wallet::Card.new(card_token) # delete card token
+MonoMerchant::Wallet::Payment.new(card_token, amount) # see other attributes directly in code
+
+# Merchant
+MonoMerchant::Details.new # basic info about merchant: Id, Name, edrpou
+MonoMerchant::Statement.new(from: 1649329978, to: 1649329978) # get bank account statement for defined period. from & to are utc unix timestamps
 
 ```
+
+## TODO
+
+- [credentials payment](https://api.monobank.ua/docs/acquiring.html#/paths/~1api~1merchant~1invoice~1payment-direct/post)
+- better Readme
+- minor todos (noticed directly in code)
 
 ## Development
 
