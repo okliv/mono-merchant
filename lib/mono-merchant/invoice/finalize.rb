@@ -7,7 +7,7 @@ module MonoMerchant
     class Finalize < ApiRequest
       attr_reader :invoice_id, :amount, :items
 
-      def initialize(invoice_id, amount, items: [])
+      def initialize(invoice_id, amount=nil, items: [])
         @invoice_id = invoice_id
         @amount = amount
         @items = items.map { |i| Item.new(i).to_hash }
