@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require_relative 'payment_info'
 
 module MonoMerchant
   module Invoice
