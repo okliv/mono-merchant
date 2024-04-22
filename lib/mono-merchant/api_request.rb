@@ -44,6 +44,10 @@ module MonoMerchant
       {}
     end
 
+    def data
+      []
+    end
+
     def convert_to_cents(amount)
       if amount.is_a?(BigDecimal)
         Money.from_amount(amount, currency).cents
