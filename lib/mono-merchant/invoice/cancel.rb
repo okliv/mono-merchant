@@ -6,7 +6,7 @@ module MonoMerchant
 
       attr_reader :ext_ref, :invoice_id, :amount, :items
 
-      def initialize(invoice_id, amount, ext_ref: nil, items: [])
+      def initialize(invoice_id, amount = nil, ext_ref: nil, items: [])
         @invoice_id, @amount, @items, @ext_ref = invoice_id, amount, items, ext_ref
         super()
       end

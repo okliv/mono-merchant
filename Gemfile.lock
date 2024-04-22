@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    mono-merchant (1.0.0)
+    mono-merchant (0.2.0)
       activesupport (~> 7)
       base64 (~> 0.2)
       json (~> 2.5)
