@@ -20,6 +20,10 @@ module MonoMerchant
           items: items.presence
         }
       end
+
+      def data
+        %w[status createdDate modifiedDate]
+      end
     end
   end
 end
