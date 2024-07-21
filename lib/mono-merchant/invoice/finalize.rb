@@ -20,7 +20,7 @@ module MonoMerchant
         { invoiceId: invoice_id,
           amount: amount,
           items: items.presence
-        }
+        }.compact!
       end
 
       def data
